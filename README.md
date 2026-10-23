@@ -1,21 +1,56 @@
 # 🧮 Java Calculator
 
-Оконный калькулятор на Java Swing с автотестами на JUnit 5, отчётами Allure и проверкой кода в SonarCloud.
+Оконный калькулятор на Java Swing с автотестами на JUnit 5, отчётами Allure, анализом кода в SonarCloud и задачами в Jira.
 
 [![CI](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/tests-allure.yml/badge.svg)](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/tests-allure.yml)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=alert_status)](https://sonarcloud.io/project/overview?id=ravshanbekrakhmetullayev-ui_java-calculator)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=coverage)](https://sonarcloud.io/project/overview?id=ravshanbekrakhmetullayev-ui_java-calculator)
-[![Allure](https://img.shields.io/badge/Allure-отчёт-FF6B6B?style=flat-square)](https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/)
+[![Jira key check](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/jira-key-check.yml/badge.svg)](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/jira-key-check.yml)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Allure Report](https://img.shields.io/badge/Allure-отчёт-FF6B6B?logo=qameta&logoColor=white)](https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/)
+[![Jira](https://img.shields.io/badge/Jira-CALC-0052CC?logo=jira&logoColor=white)](https://ravshanbekrakhmetullayevqa.atlassian.net/jira/software/projects/CALC/boards/2)
 
-**Отчёт Allure:** https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ · **CI, SonarCloud и Jenkins:** [docs/ci.md](docs/ci.md) · **Jira (проект CALC):** [docs/jira.md](docs/jira.md)
+![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?logo=openjdk&logoColor=white)
+![JUnit 5](https://img.shields.io/badge/JUnit-5-25A162?logo=junit5&logoColor=white)
+![Tests](https://img.shields.io/badge/автотесты-114-25A162)
+![Test cases](https://img.shields.io/badge/тест--кейсы-34-0052CC)
 
-> Работа ведётся через задачи Jira: ветка `feature/CALC-12-...`, коммит `CALC-12 ...`, PR `CALC-12 ...`. Без ключа задачи PR не пройдёт проверку. Подробно: [docs/jira.md](docs/jira.md).
+## 🔌 Интеграции
 
-![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
-![JUnit 5](https://img.shields.io/badge/JUnit-5-25A162?style=flat-square&logo=junit5&logoColor=white)
-![Allure](https://img.shields.io/badge/Allure-report-FF6B6B?style=flat-square)
-![Tests](https://img.shields.io/badge/автотесты-114-25A162?style=flat-square)
-![Test cases](https://img.shields.io/badge/тест--кейсы-34-0052CC?style=flat-square)
+| Сервис | Что делает | Где смотреть | Настройка |
+|---|---|---|---|
+| ⚙️ **GitHub Actions** | Сборка, 114 автотестов, покрытие, публикация отчётов на каждый push и PR | [Actions](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions) | [`tests-allure.yml`](.github/workflows/tests-allure.yml) |
+| 📊 **Allure Report** | Отчёт по тестам: шаги, вложения, история, ссылки на тест-кейсы и задачи Jira | [Отчёт на GitHub Pages](https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/) | [`allure.properties`](src/test/resources/allure.properties) |
+| 🔍 **SonarCloud** | Статический анализ: баги, уязвимости, code smells, дублирование, Quality Gate | [Проект в SonarCloud](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator) | [`pom.xml`](pom.xml), [docs/ci.md](docs/ci.md) |
+| 🧪 **JaCoCo** | Покрытие кода тестами (HTML и XML для Sonar) | Артефакт `reports` в каждом запуске Actions | [`pom.xml`](pom.xml) |
+| 📋 **Jira** | Задачи, спринты, связь ветки → коммиты → PR → сборки | [Доска CALC](https://ravshanbekrakhmetullayevqa.atlassian.net/jira/software/projects/CALC/boards/2) · [Инструкция CALC-20](https://ravshanbekrakhmetullayevqa.atlassian.net/browse/CALC-20) | [docs/jira.md](docs/jira.md), [`jira-key-check.yml`](.github/workflows/jira-key-check.yml) |
+| 🏗️ **Jenkins** | Тот же конвейер для своего сервера: сборка → тесты → Sonar → Quality Gate → Allure | — | [`Jenkinsfile`](Jenkinsfile), [docs/ci.md](docs/ci.md#jenkins) |
+| 🗂️ **Тест-кейсы (TMS)** | 34 тест-кейса, 30 автоматизированы, CSV для импорта в Qase / TestIT / TestRail | [docs/test-cases.md](docs/test-cases.md) | [`test-cases.csv`](docs/test-cases.csv) |
+
+### Как всё связано
+
+```mermaid
+flowchart LR
+    J[📋 Jira<br/>задача CALC-N] -->|ветка, коммит, PR с ключом| G[GitHub]
+    G -->|push / PR| A[⚙️ GitHub Actions]
+    A -->|mvn verify| T[🧪 JUnit 5 + JaCoCo]
+    T -->|результаты| R[📊 Allure → GitHub Pages]
+    T -->|покрытие| S[🔍 SonarCloud<br/>Quality Gate]
+    A -->|статус сборки| J
+    R -->|@Issue / @TmsLink| J
+    G -.->|тот же Jenkinsfile| K[🏗️ Jenkins]
+```
+
+### Порядок работы
+
+1. Взять задачу на [доске Jira](https://ravshanbekrakhmetullayevqa.atlassian.net/jira/software/projects/CALC/boards/2), например `CALC-30`.
+2. Ветка `feature/CALC-30-описание`, коммиты `CALC-30 ...`, PR `CALC-30 ...` (шаблон PR подставится сам).
+3. Дождаться зелёных проверок: **Проверка ключа Jira**, **автотесты**, **SonarCloud Quality Gate**.
+4. Слить PR. Задача в Jira переходит в «Готово», отчёт Allure обновляется.
+
+Подробно: [docs/jira.md](docs/jira.md) · [docs/ci.md](docs/ci.md)
 
 ## Возможности калькулятора
 
@@ -29,7 +64,10 @@
 
 ```
 java-calculator/
-├── pom.xml                          Maven: JUnit 5, Allure
+├── pom.xml                          Maven: JUnit 5, Allure, JaCoCo, Sonar
+├── Jenkinsfile                      конвейер для Jenkins
+├── .github/workflows/               GitHub Actions: тесты + Allure + Sonar, проверка ключа Jira
+├── .github/pull_request_template.md шаблон PR
 ├── run-tests.sh                     автотесты + отчёт Allure одной командой
 ├── build-app.sh                     сборка Calculator.app для macOS
 ├── src/main/java/Calculator.java    приложение
@@ -43,6 +81,8 @@ java-calculator/
 │   └── FormattingTest.java          разряды, формат чисел, вставка из буфера
 ├── src/test/resources/allure.properties
 └── docs/
+    ├── ci.md                        CI, SonarCloud, Jenkins
+    ├── jira.md                      работа с Jira
     ├── test-cases.md                34 тест-кейса (ссылки из Allure ведут сюда)
     └── test-cases.csv               те же кейсы для импорта в TMS
 ```
