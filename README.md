@@ -7,7 +7,9 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=coverage)](https://sonarcloud.io/project/overview?id=ravshanbekrakhmetullayev-ui_java-calculator)
 [![Allure](https://img.shields.io/badge/Allure-отчёт-FF6B6B?style=flat-square)](https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/)
 
-**Отчёт Allure:** https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ · **CI, SonarCloud и Jenkins:** [docs/ci.md](docs/ci.md)
+**Отчёт Allure:** https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ · **CI, SonarCloud и Jenkins:** [docs/ci.md](docs/ci.md) · **Jira (проект CALC):** [docs/jira.md](docs/jira.md)
+
+> Работа ведётся через задачи Jira: ветка `feature/CALC-12-...`, коммит `CALC-12 ...`, PR `CALC-12 ...`. Без ключа задачи PR не пройдёт проверку. Подробно: [docs/jira.md](docs/jira.md).
 
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![JUnit 5](https://img.shields.io/badge/JUnit-5-25A162?style=flat-square&logo=junit5&logoColor=white)
