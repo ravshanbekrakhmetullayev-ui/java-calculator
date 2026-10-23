@@ -3,9 +3,10 @@
 Оконный калькулятор на Java Swing с автотестами на JUnit 5, отчётами Allure, анализом кода в SonarCloud и задачами в Jira.
 
 [![CI](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/tests-allure.yml/badge.svg)](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/tests-allure.yml)
-[![Jira key check](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/jira-key-check.yml/badge.svg)](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/jira-key-check.yml)
+[![PR: ключ Jira](https://img.shields.io/badge/PR-ключ_CALC--N_обязателен-0052CC?logo=jira&logoColor=white)](docs/jira.md)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Security](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ravshanbekrakhmetullayev-ui_java-calculator)
