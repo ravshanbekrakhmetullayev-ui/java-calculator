@@ -1,0 +1,30 @@
+name: Проверка ключа Jira
+
+# Каждый pull request должен быть привязан к задаче Jira (CALC-123):
+# ключ должен быть в названии PR или в имени ветки. Тогда GitHub for Jira
+# покажет ветку, коммиты, PR и сборки прямо в карточке задачи.
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  jira-key:
+    name: Ключ задачи Jira в PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Найти ключ CALC-N в названии PR или ветке
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          BRANCH: ${{ github.head_ref }}
+          JIRA_URL: https://ravshanbekrakhmetullayevqa.atlassian.net/browse
+        run: |
+          KEY=$(printf '%s\n%s\n' "$PR_TITLE" "$BRANCH" | grep -oE '\bCALC-[0-9]+\b' | head -n1 || true)
+          if [ -z "$KEY" ]; then
+            echo "::error::Добавьте ключ задачи Jira (например CALC-12) в название PR или в имя ветки: feature/CALC-12-описание. Инструкция: docs/jira.md"
+            exit 1
+          fi
+          echo "Задача: $KEY → $JIRA_URL/$KEY"
+          echo "### 🔗 Задача Jira: [$KEY]($JIRA_URL/$KEY)" >> "$GITHUB_STEP_SUMMARY"
