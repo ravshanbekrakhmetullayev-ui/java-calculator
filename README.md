@@ -51,7 +51,7 @@ flowchart LR
 3. Дождаться зелёных проверок: **Проверка ключа Jira**, **автотесты**, **SonarCloud Quality Gate**.
 4. Слить PR. Задача в Jira переходит в «Готово», отчёт Allure обновляется.
 
-Подробно: [docs/jira.md](docs/jira.md) · [docs/ci.md](docs/ci.md)
+Подробно: [docs/jira.md](docs/jira.md) · [docs/ci.md](docs/ci.md) · **[🔗 все ссылки и доступы](docs/links.md)**
 
 ## Возможности калькулятора
 
@@ -84,6 +84,7 @@ java-calculator/
 └── docs/
     ├── ci.md                        CI, SonarCloud, Jenkins
     ├── jira.md                      работа с Jira
+    ├── links.md                     все ссылки и доступы
     ├── test-cases.md                34 тест-кейса (ссылки из Allure ведут сюда)
     └── test-cases.csv               те же кейсы для импорта в TMS
 ```
