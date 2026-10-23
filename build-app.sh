@@ -12,7 +12,7 @@ fi
 echo "1/4 Компилирую..."
 rm -rf build dist
 mkdir -p build/classes build/jar
-javac -encoding UTF-8 -d build/classes Calculator.java
+javac -encoding UTF-8 -d build/classes src/main/java/Calculator.java
 
 echo "2/4 Проверяю (41 тест)..."
 java -Dfile.encoding=UTF-8 -cp build/classes Calculator --test > build/tests.log 2>&1 || { cat build/tests.log; echo "Тесты не прошли, сборка остановлена."; exit 1; }

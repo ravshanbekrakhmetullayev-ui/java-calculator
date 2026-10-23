@@ -1,4 +1,7 @@
 build/
 dist/
+target/
 *.class
 .DS_Store
+.idea/
+*.iml
