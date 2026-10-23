@@ -34,14 +34,14 @@
 
 ```mermaid
 flowchart LR
-    J[📋 Jira<br/>задача CALC-N] -->|ветка, коммит, PR с ключом| G[GitHub]
-    G -->|push / PR| A[⚙️ GitHub Actions]
-    A -->|mvn verify| T[🧪 JUnit 5 + JaCoCo]
-    T -->|результаты| R[📊 Allure → GitHub Pages]
-    T -->|покрытие| S[🔍 SonarCloud<br/>Quality Gate]
-    A -->|статус сборки| J
-    R -->|@Issue / @TmsLink| J
-    G -.->|тот же Jenkinsfile| K[🏗️ Jenkins]
+    J["📋 Jira<br/>задача CALC-N"] -->|"ветка, коммит, PR с ключом"| G["GitHub"]
+    G -->|"push / PR"| A["⚙️ GitHub Actions"]
+    A -->|"mvn verify"| T["🧪 JUnit 5 + JaCoCo"]
+    T -->|"результаты"| R["📊 Allure → GitHub Pages"]
+    T -->|"покрытие"| S["🔍 SonarCloud<br/>Quality Gate"]
+    A -->|"статус сборки"| J
+    R -->|"ссылки Issue и TmsLink"| J
+    G -.->|"тот же Jenkinsfile"| K["🏗️ Jenkins"]
 ```
 
 ### Порядок работы
