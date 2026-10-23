@@ -1,0 +1,59 @@
+name: Автотесты + Allure
+
+# Запуск: при каждом изменении в main и вручную (Actions → Автотесты + Allure → Run workflow)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Тесты и отчёт
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Запуск автотестов
+        run: mvn -B clean test -Dmaven.test.failure.ignore=true
+
+      - name: Сборка отчёта Allure
+        run: mvn -B allure:report
+
+      - name: Отчёт как артефакт (можно скачать)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: target/site/allure-maven-plugin
+
+      - name: Подготовка для GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/site/allure-maven-plugin
+
+  deploy:
+    name: Публикация отчёта
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Публикация на GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
