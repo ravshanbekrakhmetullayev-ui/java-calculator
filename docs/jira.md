@@ -63,7 +63,7 @@
 ```bash
 git checkout main && git pull
 git checkout -b feature/CALC-12-cube-function     # новая функция
-git checkout -b bugfix/CALC-25-division-precision # исправление бага
+git checkout -b bugfix/CALC-99-division-precision # исправление бага
 git checkout -b test/CALC-20-memory-tests         # автотесты
 ```
 
@@ -127,7 +127,7 @@ git push -u origin feature/CALC-12-cube-function
 
 Когда тест упал в отчёте Allure:
 
-1. Откройте упавший тест в https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ → скопируйте шаги, параметры и сообщение об ошибке.
+1. Откройте упавший тест в https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/allure/ → скопируйте шаги, параметры и сообщение об ошибке.
 2. В Jira: **Create → Bug**. Шаблон бага:
 
 ```
@@ -145,12 +145,12 @@ Test case:    TC-03
 
 ```java
 @Test
-@Issue("CALC-25")
+@Issue("CALC-99")
 @TmsLink("TC-03")
 void decimalPrecision() { ... }
 ```
 
-4. Исправление делайте в ветке `bugfix/CALC-25-...`. Когда тест позеленеет, баг закроется при слиянии PR.
+4. Исправление делайте в ветке `bugfix/CALC-99-...`. Когда тест позеленеет, баг закроется при слиянии PR.
 
 ---
 

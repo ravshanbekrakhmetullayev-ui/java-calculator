@@ -7,6 +7,7 @@
 
 | Ресурс | Доступ | Кто видит |
 |---|---|---|
+| Веб-приложение | 🌍 Публичное | Все, без входа; токен в настройках виден только вам |
 | Репозиторий GitHub | 🌍 Публичный | Все, без входа |
 | Отчёт Allure | 🌍 Публичный | Все, без входа |
 | Проект SonarCloud | 🌍 Публичный | Все без входа; настройки — только владелец |
@@ -15,6 +16,17 @@
 | Папка на Mac | 🔒 Локальная | Только на этом компьютере |
 
 ---
+
+## 0. Веб-приложение
+
+**Как войти:** вход не нужен. Чтобы запускать конвейер из приложения, добавьте токен GitHub в настройках (шестерёнка справа вверху).
+
+| Что | Ссылка |
+|---|---|
+| Приложение | https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ |
+| Сразу открыть станцию | `https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/#route=tests` (или `ci`, `sonar`, `jira`, `allure`, `github`, `jenkins`, `cases`, `calc`) |
+| Отчёт о покрытии JaCoCo | https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/coverage/ |
+| Инструкция | https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/blob/main/docs/web-app.md |
 
 ## 1. GitHub
 
@@ -41,7 +53,7 @@
 
 | Что | Ссылка |
 |---|---|
-| Отчёт (обновляется после каждого push в main) | https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ |
+| Отчёт (обновляется после каждого push в main) | https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/allure/ |
 | Скачать отчёт и покрытие JaCoCo архивом | Actions → последний запуск → внизу **Artifacts → reports** |
 
 ## 3. SonarCloud (анализ кода)
@@ -113,4 +125,5 @@
 | [docs/ci.md](ci.md) | GitHub Actions, SonarCloud, Jenkins |
 | [docs/jira.md](jira.md) | Работа с Jira: ветки, коммиты, PR, баги |
 | [docs/test-cases.md](test-cases.md) | Тест-кейсы |
+| [docs/web-app.md](web-app.md) | Веб-приложение |
 | [docs/links.md](links.md) | Этот список |
