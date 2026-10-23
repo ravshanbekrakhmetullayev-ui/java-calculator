@@ -237,7 +237,7 @@ $('#pulse').addEventListener('click', (e) => {
 const route = $('#route');
 let trail = [];
 let lastFocus = null;
-const overlayOpen = () => !route.hidden || !$('#settings').hidden;
+const overlayOpen = () => !route.hidden || !$('#settings').hidden || !$('#install-help').hidden;
 
 function openRoute(id, { push = true } = {}) {
   if (route.hidden) { lastFocus = document.activeElement; trail = []; route.hidden = false; document.body.style.overflow = 'hidden'; }
@@ -511,6 +511,7 @@ $('#settings-body').addEventListener('change', async (e) => {
 
 // ================================================================== клавиатура
 document.addEventListener('keydown', (e) => {
+  if (!$('#install-help').hidden) { if (e.key === 'Escape') $('#install-help').hidden = true; return; }
   if (!$('#settings').hidden) { if (e.key === 'Escape') closeSettings(); return; }
   if (!route.hidden) {
     if (e.key === 'Escape') { e.preventDefault(); closeRoute(); return; }
@@ -547,6 +548,29 @@ renderHistory();
 refreshAll();
 let timer = setInterval(() => { if (!document.hidden && route.hidden) { dropCache(); refreshAll(); } }, Math.max(15, ctx.s.refreshSec) * 1000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshAll(); });
+
+// ================================================================== отдельное приложение (PWA)
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+let installPrompt = null;
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('sw.js').catch(() => { /* без офлайна */ });
+}
+if (!standalone) $('#install').hidden = false;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installPrompt = e; });
+window.addEventListener('appinstalled', () => { $('#install').hidden = true; toast('Приложение установлено — оно в Dock и Launchpad'); });
+$('#install').addEventListener('click', async () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    installPrompt = null;
+    if (outcome === 'accepted') $('#install').hidden = true;
+    return;
+  }
+  $('#install-help').hidden = false;
+  $('#install-close').focus();
+});
+$('#install-close').addEventListener('click', () => { $('#install-help').hidden = true; });
+$('#install-help').addEventListener('click', (e) => { if (e.target.id === 'install-help') $('#install-help').hidden = true; });
 
 // ссылка вида #route=sonar открывает станцию сразу
 const hash = new URLSearchParams(location.hash.slice(1)).get('route');
