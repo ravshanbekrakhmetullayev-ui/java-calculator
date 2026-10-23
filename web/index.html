@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Java Calculator — пульт QA</title>
+  <meta name="description" content="Калькулятор и пульт управления тестированием: автотесты, CI, Allure, SonarCloud, Jira, Jenkins.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F2A33A'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='16' text-anchor='middle' fill='%231A2030'%3E%3D%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <a class="skip" href="#calc">К калькулятору</a>
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">=</span>
+      <div>
+        <h1>Java Calculator</h1>
+        <p class="brand-sub">Пульт тестирования</p>
+      </div>
+    </div>
+    <nav class="pulse" aria-label="Состояние проекта" id="pulse"></nav>
+    <button class="icon-btn" id="open-settings" aria-label="Настройки" title="Настройки (S)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+    </button>
+  </header>
+
+  <main class="layout">
+    <section class="calc" id="calc" aria-label="Калькулятор">
+      <div class="display" aria-live="polite">
+        <div class="d-row">
+          <span class="d-mem" id="d-mem"></span>
+          <span class="d-top" id="d-top"></span>
+        </div>
+        <output class="d-main" id="d-main">0</output>
+        <div class="d-preview" id="d-preview"></div>
+      </div>
+      <div class="keys" id="keys"></div>
+      <div class="calc-foot">
+        <button class="link-btn" id="copy">Скопировать результат</button>
+        <button class="link-btn" id="paste">Вставить выражение</button>
+        <button class="link-btn" id="toggle-history" aria-expanded="false" aria-controls="history">История</button>
+      </div>
+      <div class="history" id="history" hidden>
+        <div class="history-head">
+          <h2>История</h2>
+          <button class="link-btn" id="clear-history">Очистить</button>
+        </div>
+        <ol id="history-list"></ol>
+      </div>
+    </section>
+
+    <section class="map-wrap" aria-labelledby="map-title">
+      <div class="map-head">
+        <h2 id="map-title">Карта интеграций</h2>
+        <p>Нажмите на станцию, чтобы увидеть, что в неё приходит, что она делает и куда можно пойти дальше.</p>
+      </div>
+      <div class="map" id="map">
+        <svg class="map-lines" id="map-lines" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true"></svg>
+      </div>
+      <ul class="legend">
+        <li><span class="lg-line"></span>Поток данных</li>
+        <li><span class="lg-line lg-back"></span>Обратная связь в Jira</li>
+        <li><span class="lg-dot ok"></span>Всё хорошо</li>
+        <li><span class="lg-dot busy"></span>Выполняется</li>
+        <li><span class="lg-dot bad"></span>Нужно внимание</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Экран маршрута: «откуда → станция → куда дальше» -->
+  <div class="route" id="route" role="dialog" aria-modal="true" aria-labelledby="route-title" hidden>
+    <div class="route-bar">
+      <ol class="trail" id="trail" aria-label="Пройденный маршрут"></ol>
+      <button class="icon-btn" id="route-close" aria-label="Закрыть (Esc)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="route-stage" id="route-stage">
+      <svg class="route-lines" id="route-lines" aria-hidden="true"></svg>
+      <div class="route-col route-from">
+        <h3>Приходит из</h3>
+        <ul id="route-from"></ul>
+      </div>
+      <article class="station-card" id="station-card">
+        <header class="sc-head">
+          <span class="badge" id="sc-badge"></span>
+          <div>
+            <h2 id="route-title"></h2>
+            <p class="sc-desc" id="sc-desc"></p>
+          </div>
+        </header>
+        <div class="sc-body" id="sc-body"></div>
+      </article>
+      <div class="route-col route-next">
+        <h3>Куда дальше</h3>
+        <ol id="route-next"></ol>
+      </div>
+    </div>
+    <p class="route-keys">Клавиши: <kbd>1</kbd>–<kbd>9</kbd> — выбрать путь, <kbd>⌫</kbd> — шаг назад, <kbd>Esc</kbd> — к карте</p>
+  </div>
+
+  <!-- Настройки -->
+  <aside class="drawer" id="settings" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <form class="drawer-panel" id="settings-form" novalidate>
+      <header class="drawer-head">
+        <h2 id="settings-title">Настройки</h2>
+        <button type="button" class="icon-btn" id="settings-close" aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+      <div class="drawer-body" id="settings-body"></div>
+      <footer class="drawer-foot">
+        <button type="button" class="btn ghost" id="settings-check">Проверить подключения</button>
+        <button type="submit" class="btn primary">Сохранить</button>
+      </footer>
+    </form>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
