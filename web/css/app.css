@@ -81,6 +81,13 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .dot.busy { background: var(--busy); animation: blink 1.2s ease-in-out infinite; }
 @keyframes blink { 50% { opacity: .35; } }
 
+.install { white-space: nowrap; }
+.install-help .drawer-body h3 { font-size: 15px; margin: 18px 0 6px; }
+.install-help .drawer-body ol { margin: 0; padding-left: 20px; color: var(--dim); }
+.install-help .drawer-body li { margin-bottom: 4px; }
+.install-help .drawer-body b { color: var(--text); font-weight: 600; }
+@media (display-mode: standalone) { .install { display: none !important; } .top { padding-top: max(16px, env(titlebar-area-height, 0px)); } }
+
 .icon-btn {
   width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--rail); background: transparent;
   display: grid; place-items: center; cursor: pointer; flex: none;
