@@ -15,6 +15,17 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <junit.version>5.10.2</junit.version>
         <allure.version>2.27.0</allure.version>
+        <jacoco.version>0.8.12</jacoco.version>
+        <!-- JaCoCo дописывает сюда свой агент; пустое значение нужно, если покрытие отключено -->
+        <argLine></argLine>
+
+        <!-- SonarCloud / SonarQube -->
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>ravshanbekrakhmetullayev-ui</sonar.organization>
+        <sonar.projectKey>ravshanbekrakhmetullayev-ui_java-calculator</sonar.projectKey>
+        <sonar.projectName>Java Calculator</sonar.projectName>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
     </properties>
 
     <dependencies>
@@ -33,11 +44,39 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>4.0.0.4121</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
+            </plugin>
+
+            <!-- Покрытие кода тестами: отчёт target/site/jacoco (HTML и XML для Sonar) -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals><goal>prepare-agent</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals><goal>report</goal></goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Запуск тестов. Результаты для Allure пишутся в target/allure-results -->
@@ -46,7 +85,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <argLine>-Dfile.encoding=UTF-8 -Djava.awt.headless=true</argLine>
+                    <argLine>@{argLine} -Dfile.encoding=UTF-8 -Djava.awt.headless=true</argLine>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>

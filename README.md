@@ -1,6 +1,13 @@
 # 🧮 Java Calculator
 
-Оконный калькулятор на Java Swing с автотестами на JUnit 5 и отчётами Allure.
+Оконный калькулятор на Java Swing с автотестами на JUnit 5, отчётами Allure и проверкой кода в SonarCloud.
+
+[![CI](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/tests-allure.yml/badge.svg)](https://github.com/ravshanbekrakhmetullayev-ui/java-calculator/actions/workflows/tests-allure.yml)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=alert_status)](https://sonarcloud.io/project/overview?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ravshanbekrakhmetullayev-ui_java-calculator&metric=coverage)](https://sonarcloud.io/project/overview?id=ravshanbekrakhmetullayev-ui_java-calculator)
+[![Allure](https://img.shields.io/badge/Allure-отчёт-FF6B6B?style=flat-square)](https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/)
+
+**Отчёт Allure:** https://ravshanbekrakhmetullayev-ui.github.io/java-calculator/ · **CI, SonarCloud и Jenkins:** [docs/ci.md](docs/ci.md)
 
 ![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![JUnit 5](https://img.shields.io/badge/JUnit-5-25A162?style=flat-square&logo=junit5&logoColor=white)
